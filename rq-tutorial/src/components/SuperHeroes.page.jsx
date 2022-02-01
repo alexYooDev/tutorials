@@ -20,7 +20,8 @@ export const SuperHeroesPage = () => {
         setData(data);
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setError(error.message);
+        setIsLoading(false);
       }
     };
     fetchSuperHeroes();
@@ -28,6 +29,11 @@ export const SuperHeroesPage = () => {
   /* isLoading 중이라면, 서버 데이터를 사용하는 로직 대신, Loading... 메시지를 보여준다. */
   if (isLoading) {
     return <h2>Loading...</h2>;
+  }
+
+  /* 에러 상태값이 존재하면 error 생태값에 저장한 에러메시지를 보여준다. */
+  if (error) {
+    return <h2>{error}</h2>;
   }
   return (
     <div>
